@@ -1,6 +1,6 @@
 package br.com.fiap.global_solution.security;
 
-import br.com.adOptimize.api_adOptimize.model.User;
+import br.com.fiap.global_solution.model.User;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;

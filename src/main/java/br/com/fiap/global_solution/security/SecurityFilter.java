@@ -1,6 +1,6 @@
 package br.com.fiap.global_solution.security;
 
-import br.com.adOptimize.api_adOptimize.repository.UserRepository;
+import br.com.fiap.global_solution.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
