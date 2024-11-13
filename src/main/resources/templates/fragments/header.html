@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cabeçalho</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../static/style.css" th:href="@{style.css}" />
+</head>
+<body>
+<div th:fragment="header" th:class="links">
+    <h1 th:class="cabecalho">ADOptimize</h1>
+    <span> | </span>
+    <a href="/listaUsuariosTemplate" th:href="@{/listaUsuariosTemplate}" th:class="links">Lista de Usuarios</a>
+    <span> | </span>
+    <a href="/cadastroUsuario" th:href="@{/cadastroUsuario}" th:class="links">Cadastrar Usuario</a>
+    <span> | </span>
+    <a href="/listaAnunciosTemplate" th:href="@{/listaAnunciosTemplate}" th:class="links">Lista de Anuncios</a>
+    <span> | </span>
+    <a href="/cadastroAnuncio" th:href="@{/cadastroAnuncio}" th:class="links">Cadastrar Anuncio</a>
+    <hr />
+    <span> | </span>
+    <a href="/listaCampanhasTemplate" th:href="@{/listaCampanhasTemplate}" th:class="links">Lista de campanhas</a>
+    <span> | </span>
+    <a href="/cadastroCampanha" th:href="@{/cadastroCampanha}" th:class="links">Cadastrar Campanha</a>
+    <hr />
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Template</title>
+  <link rel="stylesheet" type="text/css" media="all" href="../static/style.css" th:href="@{style.css}" />
+</head>
+<body th:class="background">
+<div th:replace="~{fragments/header :: header}"></div>
+<div th:insert="${page} :: ${content}"></div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

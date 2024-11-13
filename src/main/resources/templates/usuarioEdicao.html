@@ -1,0 +1,35 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="pt-BR"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Usuarios</title>
+</head>
+<body>
+<div th:fragment="formEdicao">
+  <form method="post" th:action="@{/atualizarUsuario/{idUsuario}(idUsuario = ${idUsuario})}" th:object="${usuarioRequest}">
+    <h2>Edição de Usuario</h2>
+    <input type="hidden" th:field="${idUsuario}">
+    <br/>
+    <table>
+      <tr>
+        <td>Nome:</td>
+        <td><input type="text" size="50" th:field="*{nome}"></td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><input type="text" size="20" th:field="*{email}"></td>
+      </tr>
+      <tr>
+        <td>Senha:</td>
+        <td><input type="text" size="50" th:field="*{senha}"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="submit" value="Gravar"></td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>

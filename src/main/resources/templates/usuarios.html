@@ -1,0 +1,42 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="pt-BR"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../static/style.css" th:href="@{style.css}" />
+</head>
+<body>
+<div th:fragment="listaUsuarios">
+    <h2>Lista de Usuarios Cadastrados</h2>
+    <br/>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Senha</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="usuario : ${listaUsuarios}">
+            <td th:text="${usuario.getIdUsuario()}">ID</td>
+            <td th:text="${usuario.getNome()}">Nome</td>
+            <td th:text="${usuario.getEmail()}">Email</td>
+            <td th:text="${usuario.getSenha()}">Senha</td>
+
+            <td>
+                <a th:href="@{/editaUsuario/{id}(id = ${usuario.idUsuario})}">Editar</a>
+                <span> | </span>
+                <a th:href="@{/deletarUsuario/{id}(id = ${usuario.idUsuario})}">Excluir</a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
