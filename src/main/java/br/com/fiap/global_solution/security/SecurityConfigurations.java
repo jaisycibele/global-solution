@@ -17,30 +17,35 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class SecurityConfigurations {
+
     @Autowired
     private SecurityFilter securityFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                // desativando uma config padrão de proteção contra ataque csrf
-                // para facilitar nosso teste de login
+                // desativando uma configuração padrão de proteção contra ataques CSRF
                 .csrf(csrf -> csrf.disable())
+
                 // não armazena sessão do usuário
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        // libera o POST de /auth/login para todos
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        // libera o POST de /auth/register para todos
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-                        // restringe a criação (POST) de usuarios apenas a usuários ADMIN
+                        // Libera os métodos GET e POST para /auth/login e /auth/register
+                        .requestMatchers(HttpMethod.GET, "/auth/login", "/auth/register", "/auth/register-view").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/login", "/auth/register", "/auth/register-view").permitAll()
+
+                        .requestMatchers(HttpMethod.POST, "/usuarios").hasRole("USER")
                         .requestMatchers(HttpMethod.POST, "/aparelho").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/aparelho/{id}").hasRole("USER")
+
+                        // Permitir acesso a todos para o método GET de /springai/generate
                         .requestMatchers(HttpMethod.GET, "/springai/generate").permitAll()
 
-
+                        // Acesso restrito a todos os outros endpoints para usuários com role ADMIN
                         .requestMatchers("/**").hasRole("ADMIN")
 
-                        // libera todos os outros métodos da API para qualquer usuário AUTENTICADO
+                        // Exige que todas as outras requisições sejam autenticadas
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
@@ -55,5 +60,5 @@ public class SecurityConfigurations {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    } // para trabalhar com hash de senha
+    }
 }
