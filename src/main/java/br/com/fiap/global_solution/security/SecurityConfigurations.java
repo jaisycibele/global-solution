@@ -36,6 +36,7 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/auth/login", "/auth/register", "/auth/register-view").permitAll()
 
                         .requestMatchers(HttpMethod.POST, "/usuarios").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/usuarios/{id}").hasRole("USER")
                         .requestMatchers(HttpMethod.POST, "/aparelho").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/aparelho/{id}").hasRole("USER")
 
