@@ -10,21 +10,19 @@ import java.util.List;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long idAparelho;
 
-        @Column(name = "nome", nullable = false)
+        @Column(name = "nome")
         private String nome;
 
-        @Column(name = "potencia", nullable = false)
+        @Column(name = "potencia")
         private Long potencia;
 
-        @Column(name = "tipo", nullable = false)
+        @Column(name = "tipo")
         private String tipo;
 
-        @ManyToOne(fetch = FetchType.EAGER)
+        @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
         @JoinColumn(name = "usuario_id", referencedColumnName = "idUsuario", foreignKey = @ForeignKey(name = "FK_APARELHO_USUARIO"))
         private Usuario usuario;
 
-        @OneToMany(mappedBy = "aparelho", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-        private List<Consumo> consumos;
 
         public Long getIdAparelho() {
             return idAparelho;
@@ -66,11 +64,4 @@ import java.util.List;
             this.usuario = usuario;
         }
 
-        public List<Consumo> getConsumos() {
-            return consumos;
-        }
-
-        public void setConsumos(List<Consumo> consumos) {
-            this.consumos = consumos;
-        }
     }

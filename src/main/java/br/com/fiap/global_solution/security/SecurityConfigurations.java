@@ -35,16 +35,35 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.GET, "/auth/login", "/auth/register", "/auth/register-view").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login", "/auth/register", "/auth/register-view").permitAll()
 
-                        .requestMatchers(HttpMethod.POST, "/usuarios").hasRole("USER")
-                        .requestMatchers(HttpMethod.POST, "/usuarios/{id}").hasRole("USER")
-                        .requestMatchers(HttpMethod.POST, "/aparelho").hasRole("USER")
-                        .requestMatchers(HttpMethod.GET, "/aparelho/{id}").hasRole("USER")
+                        .requestMatchers("/auth/**").permitAll()
+
+                        .requestMatchers("/listaUsuarios", "/cadastrarUsuario", "/listaUsuariosTemplate", "/editaUsuario/**", "/deletarUsuario/**", "/cadastroUsuario", "/usuario/template", "atualizarUsuario/**").permitAll()
+                        .requestMatchers("/listaAparelhos", "/cadastroAparelho", "/cadastrarAparelho",
+                                "/editaAparelho/**", "/atualizarAparelho/**", "/deletarAparelho/**", "/listaAparelhosTemplate").permitAll()
+
+                        .requestMatchers(HttpMethod.POST, "/api/usuario").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/usuario/{id}").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/usuario").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/usuario/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/usuario/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/aparelho").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/aparelho/{id}").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/aparelho").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/aparelho/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/aparelho/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/consumo").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/consumo/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/consumo").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/consumo/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/consumo/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/precoEnergia").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/precoEnergia/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/precoEnergia").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/precoEnergia/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/precoEnergia/{id}").hasRole("ADMIN")
 
                         // Permitir acesso a todos para o método GET de /springai/generate
                         .requestMatchers(HttpMethod.GET, "/springai/generate").permitAll()
-
-                        // Acesso restrito a todos os outros endpoints para usuários com role ADMIN
-                        .requestMatchers("/**").hasRole("ADMIN")
 
                         // Exige que todas as outras requisições sejam autenticadas
                         .anyRequest().authenticated()

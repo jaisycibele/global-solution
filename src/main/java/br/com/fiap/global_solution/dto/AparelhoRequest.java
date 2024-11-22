@@ -21,7 +21,7 @@ public class AparelhoRequest {
     @Size(min = 2, max = 255)
     private String tipo;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinColumn(
             name = "ID_USUARIO",
             referencedColumnName = "idUsuario",

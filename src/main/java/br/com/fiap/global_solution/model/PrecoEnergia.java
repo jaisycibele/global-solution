@@ -11,10 +11,10 @@ public class PrecoEnergia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPrecoEnergia;
 
-    @Column(name = "data", nullable = false)
+    @Column(name = "data")
     private String data;
 
-    @Column(name = "preco_kwh", nullable = false)
+    @Column(name = "preco_kwh")
     private Double precoKwh;
 
     public Long getIdPrecoEnergia() {

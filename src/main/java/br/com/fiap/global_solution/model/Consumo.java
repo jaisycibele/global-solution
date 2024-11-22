@@ -11,17 +11,17 @@ public class Consumo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idConsumo;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinColumn(name = "aparelho_id", referencedColumnName = "idAparelho", foreignKey = @ForeignKey(name = "FK_CONSUMO_APARELHO"))
     private Aparelho aparelho;
 
-    @Column(name = "data", nullable = false)
+    @Column(name = "data")
     private String data;
 
-    @Column(name = "consumo_kwh", nullable = false)
+    @Column(name = "consumo_kwh")
     private Double consumoKwh;
 
-    @Column(name = "custo_estimado", nullable = false)
+    @Column(name = "custo_estimado")
     private Double custoEstimado;
 
     public Long getIdConsumo() {

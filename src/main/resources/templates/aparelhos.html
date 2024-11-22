@@ -1,0 +1,44 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="pt-BR"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Aparelhos</title>
+  <link rel="stylesheet" type="text/css" media="all" href="../static/style.css" th:href="@{style.css}" />
+</head>
+<body>
+<div th:replace="~{fragments/header}"></div>
+<div th:fragment="listaAparelhos">
+  <h2>Lista de Aparelhos Cadastrados</h2>
+  <br/>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Potência (W)</th>
+      <th>Tipo</th>
+      <th>Usuário</th>
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="aparelho : ${listaAparelhos}">
+      <td th:text="${aparelho.getIdAparelho()}">ID</td>
+      <td th:text="${aparelho.getNome()}">Nome</td>
+      <td th:text="${aparelho.getPotencia()}">Potência</td>
+      <td th:text="${aparelho.getTipo()}">Tipo</td>
+      <td th:text="${aparelho.getUsuario().getNome()}">Usuário</td>
+
+      <td>
+        <a th:href="@{/editaAparelho/{id}(id=${aparelho.idAparelho})}">Editar</a>
+        <span> | </span>
+        <a th:href="@{/deletarAparelho/{id}(id=${aparelho.idAparelho})}">Excluir</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

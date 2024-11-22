@@ -13,17 +13,15 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
 
-    @Column(name = "nome", nullable = false)
+    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "senha", nullable = false)
+    @Column(name = "senha")
     private String senha;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Aparelho> aparelho;
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -57,12 +55,5 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public List<Aparelho> getAparelho() {
-        return aparelho;
-    }
-
-    public void setAparelhos(List<Aparelho> aparelho) {
-        this.aparelho = aparelho;
-    }
 
 }

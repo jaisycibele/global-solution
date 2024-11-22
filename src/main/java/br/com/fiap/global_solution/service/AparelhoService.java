@@ -3,10 +3,15 @@ package br.com.fiap.global_solution.service;
 import br.com.fiap.global_solution.dto.AparelhoRequest;
 import br.com.fiap.global_solution.dto.AparelhoResponse;
 import br.com.fiap.global_solution.model.Aparelho;
+import br.com.fiap.global_solution.repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AparelhoService {
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public Aparelho requestToAparelho(AparelhoRequest aparelhoRequest) {
         Aparelho aparelho = new Aparelho();
