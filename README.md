@@ -21,6 +21,9 @@
 
 https://youtu.be/bd8gFrl1YxA?si=bYWSBQI95MKW_9Ul
 
+## Link vídeo pitch
+
+https://www.youtube.com/watch?v=imktuJo18C8
 
 
   
